@@ -21,11 +21,19 @@ window.onload = () => {
 
 function addToList() {
     itemCount ++; 
+    let checkButton = document.createElement("button");
+        checkButton.textContent = "✓";
+        checkButton.id = "checkButton";
+        checkButton.onclick = function() {
+            newDiv.remove();
+            
+        }
     var taskInput = document.getElementById('taskInput');  
     const task = taskInput.value.trim();
     let newDiv = document.createElement("div");
         newDiv.textContent = "🎄 " + task;
         newDiv.id = "item";
+
     let newButton = document.createElement("button");
         newButton.textContent = "Remove";
         newButton.id = "removeButton";
@@ -33,13 +41,15 @@ function addToList() {
             newDiv.remove();
             savedList();
         };
+
     if (task === '') {
         alert('Please enter a valid item.');
         return;
     }
+    newDiv.appendChild(checkButton);
     newDiv.appendChild(newButton);
     document.getElementById('list').appendChild(newDiv);
-
+    
     if (save) saveList();
 
     taskInput.value = "";
