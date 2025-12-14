@@ -1,4 +1,4 @@
-var itemCount =0;
+var itemCount =0;//will be used later 
 
 
 const backgroundMusic = new Audio("sounds/background.mp3");
@@ -10,12 +10,12 @@ function startMusic() {
     document.removeEventListener('click', startMusic);
 }
 
-// Listen for first click or key press
+// starts music on click
 document.addEventListener('click', startMusic);
 
 window.onload = () => {
     const savedList = JSON.parse(localStorage.getItem("tasks")) || [];
-    savedList.forEach(task => addToList(task, false)); // false = don't save again
+    savedList.forEach(task => addToList(task, false)); 
 };
 
 
@@ -55,12 +55,11 @@ function addToList() {
     taskInput.value = "";
    
 }
-// Save current list to localStorage
+// Save 
 function saveList() {
     const tasks = [];
     const listItems = document.querySelectorAll('#list div');
     listItems.forEach(div => {
-        // Remove the "🎄 " and get text only
         const text = div.firstChild.textContent.replace("🎄 ", "");
         tasks.push(text);
     });
@@ -70,7 +69,7 @@ function addTextToList(text) {
     document.getElementById('list').innerHTML += '🎄 ' + text + '<br>';
 }
 
-
+// Reindeer animation
 window.onload = () => {
     const r = document.getElementById("reindeer");
     r.classList.remove("hidden");
@@ -107,22 +106,15 @@ function createSnowflake() {
     const snow = document.createElement("div");
     snow.classList.add("snowflake");
     snow.textContent = "❄";
-
-    // Random horizontal start position
     snow.style.left = Math.random() * window.innerWidth + "px";
-
-    // Random size
     snow.style.fontSize = (Math.random() * 15 + 10) + "px";
 
-    // Random fall speed
     snow.style.animationDuration = (Math.random() * 3 + 3) + "s";
-
-    // Small random horizontal drifting using rotate
     snow.style.animationTimingFunction = "ease-in-out";
 
     document.getElementById("snow-container").appendChild(snow);
 
-    // Remove snowflake after it finishes falling
+    // Remove snowflaker
     setTimeout(() => snow.remove(), 6000);
 }
 
